@@ -2,7 +2,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const https = require("https");
 const app = express();
-require("dotenv").config()
 
 
 app.use(express.static("public"));
@@ -30,10 +29,10 @@ app.post("/", function(req, res) {
     ]
   };
   const jsonData = JSON.stringify(data);
-  const url = "https://us21.api.mailchimp.com/3.0/lists/f6242243b7"; // Replace YOUR_LIST_ID with your Mailchimp list ID
+  const url = "https://us21.api.mailchimp.com/3.0/lists/f6242243b7";
   const options = {
     method: "POST",
-    auth: process.env.API_KEY
+    auth: "anystring:1a4193ff0443b8d3e6fd54a8cab64e58-us21"
   };
 
   const request = https.request(url, options, function(response) {
