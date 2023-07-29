@@ -2,6 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const https = require("https");
 const app = express();
+require("dotenv").config()
+
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -31,7 +33,7 @@ app.post("/", function(req, res) {
   const url = "https://us21.api.mailchimp.com/3.0/lists/f6242243b7"; // Replace YOUR_LIST_ID with your Mailchimp list ID
   const options = {
     method: "POST",
-    auth: "anystring:1f7816e01896a820b69a8eade89fc980-us21" // Replace YOUR_API_KEY with your Mailchimp API key
+    auth: process.env.API_KEY
   };
 
   const request = https.request(url, options, function(response) {
@@ -54,11 +56,3 @@ app.post("/", function(req, res) {
 app.listen(process.env.PORT || 1111, function() {
   console.log("Server Is Running at Port: 1111");
 });
-
-
-// API Key: 1f7816e01896a820b69a8eade89fc980-us21
-// Unique Id: f6242243b7
-// const options = {
-//   method: "POST",
-//   auth: "1f7816e01896a820b69a8eade89fc980-us21"
-// }
